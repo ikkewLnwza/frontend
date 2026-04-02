@@ -141,6 +141,31 @@ class JobCard extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: job.incomeType == 'daily' 
+                            ? const Color(0xFFFFF3E0) 
+                            : const Color(0xFFE3F2FD),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: job.incomeType == 'daily' 
+                              ? const Color(0xFFFFB74D) 
+                              : const Color(0xFF64B5F6),
+                            width: 1,
+                          ),
+                        ),
+                        child: Text(
+                          job.incomeType == 'daily' ? 'รายวัน' : 'รายเดือน',
+                          style: GoogleFonts.kanit(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            color: job.incomeType == 'daily' 
+                              ? const Color(0xFFE65100) 
+                              : const Color(0xFF0D47A1),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -174,6 +199,78 @@ class JobCard extends StatelessWidget {
                         style: GoogleFonts.kanit(
                           fontSize: 13,
                           color: const Color(0xFF4B5563),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                if (job.recommendationReason != null) ...[
+                  const SizedBox(height: 12),
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF6366F1).withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: const Color(0xFF6366F1).withOpacity(0.2)),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Icon(
+                          Icons.lightbulb_outline_rounded,
+                          color: Color(0xFF6366F1),
+                          size: 20,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            job.recommendationReason!,
+                            style: GoogleFonts.kanit(
+                              fontSize: 13,
+                              color: const Color(0xFF4338CA),
+                              fontWeight: FontWeight.w500,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 12),
+                // Skills required
+                Wrap(
+                  spacing: 6,
+                  runSpacing: 6,
+                  children: job.requiredSkills.map((skill) => Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border.all(color: Colors.grey[300]!),
+                    ),
+                    child: Text(
+                      skill,
+                      style: GoogleFonts.kanit(
+                        fontSize: 11,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                  )).toList(),
+                ),
+                const SizedBox(height: 16),
+                const Divider(height: 1),
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'แหล่งข้อมูล: ${job.dataSource}',
+                        style: GoogleFonts.kanit(
+                          fontSize: 11,
+                          color: Colors.grey[500],
+                          fontStyle: FontStyle.italic,
                         ),
                       ),
                     ),

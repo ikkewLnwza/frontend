@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_line_sdk/flutter_line_sdk.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:finance_care/features/auth/data/services/access_token_service.dart';
 import '../../../auth/presentation/auth_manager.dart';
 
 class UserSettingsPage extends StatefulWidget {
@@ -34,6 +35,16 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
   final FocusNode _salaryFocusNode = FocusNode();
   final ScrollController _scrollController = ScrollController();
   bool _isSalaryInvalid = false;
+  String? _selectedOccupation;
+
+  final List<String> _occupations = [
+    'ยังไม่ได้ระบุ',
+    'พนักงานบริษัท',
+    'ค้าขาย/เจ้าของธุรกิจ',
+    'นักเรียน/นักศึกษา',
+    'รับจ้างทั่วไป',
+    'ขับรถรับจ้าง',
+  ];
 
   @override
   void initState() {
@@ -86,6 +97,19 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
       debugPrint("Error loading salary: $e");
     }
 
+    try {
+      final occupation = await AccesstokenService.sharedStorage.read(key: "userOccupation");
+      if (mounted) {
+        setState(() {
+          _selectedOccupation = (occupation != null && _occupations.contains(occupation))
+              ? occupation
+              : _occupations[0];
+        });
+      }
+    } catch (e) {
+      debugPrint("Error loading occupation: $e");
+    }
+
     if (mounted) {
       setState(() => _isLoading = false);
     }
@@ -123,6 +147,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
           daysBefore: _defaultRemindDaysBefore,
         ),
         _service.setSalary(salaryAmount),
+        AccesstokenService.sharedStorage.write(key: "userOccupation", value: _selectedOccupation),
       ]);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -363,6 +388,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
       ),
     );
   }
+
 
   Widget _buildSalarySection() {
     return _buildCard(
