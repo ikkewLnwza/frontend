@@ -21,7 +21,7 @@ class UserSettingsPage extends StatefulWidget {
 
 class _UserSettingsPageState extends State<UserSettingsPage> {
   final UserSettingService _service = UserSettingService();
-  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   bool _isLoading = true;
   UserSettingOverview? _data;
   String? _currentDeviceId;
