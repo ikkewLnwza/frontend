@@ -1,6 +1,6 @@
 import 'interest_calculation_type.dart';
-import 'package:flutter_application_1/features/debt/domain/models/debt_type_response.dart';
-import 'package:flutter_application_1/features/debt/domain/models/repayment_type_response.dart';
+import 'package:finance_care/features/debt/domain/models/debt_type_response.dart';
+import 'package:finance_care/features/debt/domain/models/repayment_type_response.dart';
 
 class DebtResponse {
   final String debtId;

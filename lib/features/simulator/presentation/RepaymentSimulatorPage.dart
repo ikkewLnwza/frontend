@@ -376,7 +376,7 @@ class _RepaymentSimulatorPageState extends State<RepaymentSimulatorPage> {
                           text = value.toStringAsFixed(0);
                         }
                         return SideTitleWidget(
-                          meta: meta,
+                          axisSide: meta.axisSide,
                           space: 8,
                           child: Text(
                             text,
@@ -502,7 +502,7 @@ class _RepaymentSimulatorPageState extends State<RepaymentSimulatorPage> {
                           text = value.toStringAsFixed(0);
                         }
                         return SideTitleWidget(
-                          meta: meta,
+                          axisSide: meta.axisSide,
                           space: 8,
                           child: Text(
                             text,

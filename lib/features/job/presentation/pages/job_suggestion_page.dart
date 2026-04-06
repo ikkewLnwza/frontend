@@ -255,26 +255,6 @@ class _JobSuggestionPageState extends State<JobSuggestionPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-<<<<<<< Updated upstream
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.15),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.info_outline, color: Colors.white, size: 20),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          'ระบบจะแนะนำงานที่เหมาะสมและสามารถสร้างรายได้เสริมให้คุณนำมาอ้างอิงในการวางแผนได้',
-                          style: GoogleFonts.kanit(
-                            color: Colors.white,
-                            fontSize: 12,
-                            height: 1.4,
-=======
                 const SizedBox(height: 12),
                 Row(
                   children: [
@@ -309,7 +289,6 @@ class _JobSuggestionPageState extends State<JobSuggestionPage> {
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Color(0xFF1A1A1A),
->>>>>>> Stashed changes
                           ),
                         ),
                         const SizedBox(height: 16),
